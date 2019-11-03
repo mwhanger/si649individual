@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
+  <style>
+    body{
+      font-family: 'Montserrat';
+      padding-left: .75em;
+      padding-right: .75em;
+    }
+    h1{
+      font-size: 3em;
+    }
+    h3{
+      font-size: 1.5em;
+    }
+    main{
+      line-height: 1.5em;
+      padding-bottom: 1em;
+      padding-left: .75em;
+      padding-right: .75em;
+    }
+    .vega-actions a {
+        margin-right: 12px;
+        color: #757575;
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .error {
+        color: red;
+    }
+    #vis{
+    position: absolute;
+    margin: 0 auto;
+    left: 30em;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.4.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
+</head>
+<body>
+  <h1>Log Transformation: Why and When to use it for Linear Regression</h1>
+  <h3>By Matt Hanger (mhanger)</h3>
+  <h3>SI 649 - Fall 2019</h3>
+  <main>
+  <p>Linear regression models are one of the most common techniques for predictive data analysis. As the name suggests, linear models can be easily applied to variables that have a nearly-linear relationship with one another. In a time when more people are analyzing and working with data on a regular basis than ever before, linear regression remains a wildly popular technique and serves as an entry point into more advanced analytical tasks for many who otherwise deal mostly with simple counts and aggregate statistics.</p>
+  <p>However, relationships between variables aren't always apparently linear, and effectively dealing with the different types of relationships between variables can throw novice analysts for a loop. What they may not yet realize is that a number of simple techniques can be used to transform a non-linear relationship into a linear one in order to make a better-fitting regression model. </p>
+  <p>Log transformations are one such form of data transformation, and are often used on data that have a heavy skew or extremely long tail in their distribution. Such distributions are extremely common in real world data: monetary values, sizes of states and countries, and various biological data all show exponential distributions with long tails of high-value data points. In such cases, a logarithm can be applied to the data points to reduce their spread and make them more normally distributed, allowing them to fit assumptions of regression modeling and other types of statistical analysis.</p>
+  <p>Below is a visualization of a heavily skewed variable, which captures three core points in the data analysis process: Initial exploratory analysis of the variable's distribution (via histogram), a lineplot reflecting its relationship with another variable as well as their predicted regression line, and a scatterplot showing the residuals from a regression -- the differences between predicted and actual values. In order to see how a log transformation can effect the entire data analysis process, 
+  <strong> place your mouse over the middle X-Y line plots below</strong> and follow along with the relationship across each of the charts.</p>
+  </main>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = "altair/altair.json";
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

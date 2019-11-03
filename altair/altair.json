@@ -1,0 +1,767 @@
+{
+    "config": {
+        "view": {
+            "width": 300,
+            "height": 230
+        },
+        "mark": {
+            "tooltip": null
+        },
+        "title": {
+            "anchor": "middle"
+        }
+    },
+    "vconcat": [
+        {
+            "hconcat": [
+                {
+                    "layer": [
+                        {
+                            "mark": "bar",
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "bin": true,
+                                    "field": "y",
+                                    "title": "Original Y Values"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "aggregate": "count",
+                                    "title": "Count"
+                                }
+                            },
+                            "title": "Untransformed Y-Variable"
+                        },
+                        {
+                            "mark": {
+                                "type": "rule",
+                                "color": "red"
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "y"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "filter": {
+                                        "selection": "selector004"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "layer": [
+                        {
+                            "mark": "bar",
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "bin": true,
+                                    "field": "logy",
+                                    "title": "Log-Transformed Y-Values"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "aggregate": "count",
+                                    "title": "Count"
+                                }
+                            },
+                            "title": "Log-Transformed Y-Variable"
+                        },
+                        {
+                            "mark": {
+                                "type": "rule",
+                                "color": "red"
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "logy"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "filter": {
+                                        "selection": "selector004"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "title": "Histograms"
+        },
+        {
+            "hconcat": [
+                {
+                    "layer": [
+                        {
+                            "mark": "line",
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X",
+                                    "title": "X-Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "y",
+                                    "title": "Y-Value"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "rule",
+                                "color": "grey"
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "filter": {
+                                        "selection": "selector004"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "mark": {
+                                "type": "line",
+                                "color": "red",
+                                "strokeDash": [
+                                    5,
+                                    5
+                                ]
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "fitted"
+                                }
+                            }
+                        },
+                        {
+                            "mark": "point",
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "y",
+                                    "title": "Y-Value"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "dx": -5,
+                                "dy": -15
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "text": {
+                                    "type": "nominal",
+                                    "field": "label"
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "y",
+                                    "title": "Y-Value"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "calculate": "format(datum.y,'.2s')",
+                                    "as": "rounded"
+                                },
+                                {
+                                    "calculate": "('Original Y Value: ' + datum.rounded)",
+                                    "as": "label"
+                                }
+                            ]
+                        },
+                        {
+                            "mark": {
+                                "type": "point",
+                                "color": "red"
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "fitted"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "dx": -5,
+                                "dy": -15
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "text": {
+                                    "type": "nominal",
+                                    "field": "label"
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "fitted"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "calculate": "format(datum.fitted,'.2s')",
+                                    "as": "rounded"
+                                },
+                                {
+                                    "calculate": "('Predicted Y Value: ' + datum.rounded)",
+                                    "as": "label"
+                                }
+                            ]
+                        },
+                        {
+                            "mark": "point",
+                            "encoding": {
+                                "opacity": {
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                }
+                            },
+                            "selection": {
+                                "selector004": {
+                                    "type": "single",
+                                    "nearest": true,
+                                    "on": "mouseover",
+                                    "encodings": [
+                                        "x",
+                                        "y"
+                                    ],
+                                    "empty": "none",
+                                    "clear": "mouseout"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "layer": [
+                        {
+                            "mark": "line",
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X",
+                                    "title": "X-Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logy",
+                                    "title": "Log-Transformed Y-Value"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "rule",
+                                "color": "grey"
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "filter": {
+                                        "selection": "selector004"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "mark": {
+                                "type": "line",
+                                "color": "red",
+                                "strokeDash": [
+                                    5,
+                                    5
+                                ]
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logfitted"
+                                }
+                            }
+                        },
+                        {
+                            "mark": "point",
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logy",
+                                    "title": "Log-Transformed Y-Value"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "dx": -5,
+                                "dy": -15
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "text": {
+                                    "type": "nominal",
+                                    "field": "label"
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logy",
+                                    "title": "Log-Transformed Y-Value"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "calculate": "format(datum.logy,'.4s')",
+                                    "as": "rounded"
+                                },
+                                {
+                                    "calculate": "('Log-Transformed Y Value: ' + datum.rounded)",
+                                    "as": "label"
+                                }
+                            ]
+                        },
+                        {
+                            "mark": {
+                                "type": "point",
+                                "color": "red"
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logfitted"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "dx": -5,
+                                "dy": -15
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "text": {
+                                    "type": "nominal",
+                                    "field": "label"
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logfitted"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "calculate": "format(datum.logfitted,'.4s')",
+                                    "as": "rounded"
+                                },
+                                {
+                                    "calculate": "('Predicted Log-Y Value: ' + datum.rounded)",
+                                    "as": "label"
+                                }
+                            ]
+                        },
+                        {
+                            "mark": "point",
+                            "encoding": {
+                                "opacity": {
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "X"
+                                }
+                            },
+                            "selection": {
+                                "selector004": {
+                                    "type": "single",
+                                    "nearest": true,
+                                    "on": "mouseover",
+                                    "encodings": [
+                                        "x",
+                                        "y"
+                                    ],
+                                    "empty": "none",
+                                    "clear": "mouseout"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "title": "X-Y Relational Lineplots"
+        },
+        {
+            "hconcat": [
+                {
+                    "layer": [
+                        {
+                            "mark": "point",
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "fitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "residuals",
+                                    "title": "Residual - Distance from Actual"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "circle",
+                                "color": "red",
+                                "size": 200
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "fitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "residuals",
+                                    "title": "Residual - Distance from Actual"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "left",
+                                "dx": 5,
+                                "dy": 15
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "text": {
+                                    "type": "nominal",
+                                    "field": "label"
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "fitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "residuals",
+                                    "title": "Residual - Distance from Actual"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "calculate": "format(datum.residuals,'.2s')",
+                                    "as": "rounded"
+                                },
+                                {
+                                    "calculate": "('Residual Value: ' + datum.rounded)",
+                                    "as": "label"
+                                }
+                            ]
+                        },
+                        {
+                            "mark": {
+                                "type": "line",
+                                "color": "black",
+                                "strokeDash": [
+                                    5,
+                                    5
+                                ],
+                                "width": 50
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "fitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "resid_orig"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "layer": [
+                        {
+                            "mark": "point",
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "logfitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Log-Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logresiduals",
+                                    "title": "Residual - Distance from Actual"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "circle",
+                                "color": "red",
+                                "size": 200
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "logfitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Log-Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logresiduals",
+                                    "title": "Residual - Distance from Actual"
+                                }
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "text",
+                                "align": "right",
+                                "dx": 5,
+                                "dy": 15
+                            },
+                            "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                        "value": 1,
+                                        "selection": "selector004"
+                                    },
+                                    "value": 0
+                                },
+                                "text": {
+                                    "type": "nominal",
+                                    "field": "label"
+                                },
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "logfitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Log-Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "logresiduals",
+                                    "title": "Residual - Distance from Actual"
+                                }
+                            },
+                            "transform": [
+                                {
+                                    "calculate": "format(datum.logresiduals,'.4')",
+                                    "as": "rounded"
+                                },
+                                {
+                                    "calculate": "('Residual Value: ' + datum.rounded)",
+                                    "as": "label"
+                                }
+                            ]
+                        },
+                        {
+                            "mark": {
+                                "type": "line",
+                                "color": "black",
+                                "strokeDash": [
+                                    5,
+                                    5
+                                ],
+                                "width": 50
+                            },
+                            "encoding": {
+                                "x": {
+                                    "type": "quantitative",
+                                    "field": "logfitted",
+                                    "scale": {
+                                        "zero": false
+                                    },
+                                    "title": "Predicted Log-Y Value"
+                                },
+                                "y": {
+                                    "type": "quantitative",
+                                    "field": "resid_orig"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "title": "Regression Residuals (Prediction Differences) vs Fitted Values"
+        }
+    ],
+    "data": {
+        "url": "data/data.json"
+    },
+    "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json"
+}
